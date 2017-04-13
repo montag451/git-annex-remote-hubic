@@ -159,27 +159,13 @@ class HubicAuth(object):
 
     def get_refresh_token(self):
         """Get the OAuth2 refresh token from git-annex"""
-        token = None
-        if self.get_embed_creds():
-            # Try from config first
-            token = self.remote.get_config("hubic_refresh_token")
-            if token is None:
-                # If not found in config, try from credentials. Useful when
-                # using "enableremote embedcreds=yes" after the initial setup.
-                _, token = self.remote.get_credentials("token")
-                if token is not None:
-                    self.remote.set_config("hubic_refresh_token", token)
-        else:
-            _, token = self.remote.get_credentials("token")
+        _, token = self.remote.get_credentials("token")
         return token
 
 
     def set_refresh_token(self, token):
         """Store the OAuth2 refresh token in git-annex"""
-        if self.get_embed_creds():
-            self.remote.set_config("hubic_refresh_token", token)
-        else:
-            self.remote.set_credentials("token", "hubic", token)
+        self.remote.set_credentials("token", "hubic", token)
 
 
     def get_session(self):
