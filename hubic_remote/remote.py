@@ -178,10 +178,10 @@ class Remote(object):
 
     def dirhash(self, key):
         """Get a two level hash associated with key."""
-        self.send("DIRHASH " + key)
+        self.send("DIRHASH-LOWER " + key)
         msg = self.read().split(None, 1)
         if len(msg) != 2:
-            self.fatal("Unexpected reply format for DIRHASH")
+            self.fatal("Unexpected reply format for DIRHASH-LOWER")
         if msg[0] != "VALUE":
             self.fatal("Expected VALUE, got " + msg[0])
         return msg[1]

@@ -135,12 +135,8 @@ class SwiftConnection(object):
 
     def get_path(self, key):
         """Get the full path for storing a key"""
-        # Only use dirhash in the "default" container
-        if self.container == "default":
-            dirhash = self.remote.dirhash(key)
-            return os.path.join(self.path, dirhash, key)
-        else:
-            return os.path.join(self.path, key)
+        dirhash = self.remote.dirhash(key)
+        return os.path.join(self.path, dirhash, key)
 
     def ensure_directory_exists(self, path):
         """Makes sure the directory exists, by creating it if necessary"""
