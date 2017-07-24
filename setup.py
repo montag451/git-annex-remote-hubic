@@ -22,7 +22,7 @@ from setuptools import setup, find_packages
 setup(name="git-annex-remote-hubic",
       version="0.3.2",
       description="A git-annex special remote for hubiC",
-      long_description=open("README.md", "r").read(),
+      long_description=open("README.md", encoding="utf-8").read(),
       author="Thomas Jost",
       author_email="schnouki@schnouki.net",
       url="https://github.com/Schnouki/git-annex-remote-hubic",
